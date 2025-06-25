@@ -1,0 +1,457 @@
+*{
+    box-sizing: border-box;
+    user-select: none;
+    transition-duration: 0.5s;
+}
+
+
+main .backgroundImage{
+    background-image: url("../pictures/admin.jpg");
+    background-size: cover;
+    background-position: 0px -50px;
+    filter: blur(5px);
+    opacity: 0.5;
+}
+.modal{
+    display: none;
+    opacity: 0;
+}
+.modal .editAndInsertForm{
+    display:none;
+    padding-top: 70px;
+    overflow: hidden;
+    width: 400px;
+   
+ }
+ .modal form{
+    width: 100%;
+ }
+ .modal .editAndInsertForm .editAndInsertFormIcon{
+    width: 150px;
+    height: 150px;
+    border: solid 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em !important;
+    position: absolute;
+    top: -75px;
+    left:calc( 50% - 75px);
+    background-color:#222;
+    background-size: 100% 100%;
+ }
+
+
+
+ .modal .editAndInsertForm  input{
+    
+    border:none;
+    outline: none;
+    background-color:#222;
+    width: 100%;
+    font-size: 0.7em;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+ }
+ .modal .editAndInsertForm  input::placeholder{
+    color:#666;
+    font-family: myfont;
+    font-size: 1.5em;
+ }
+ .modal .editAndInsertForm  input[type="file"]{
+    display: none;
+
+ }
+ .modal .editAndInsertForm  .selectPictureButon{
+    color:#666;
+    font-family: myfont;
+    font-size: 1.1em;
+    background-color:#222;
+    width: 100%;
+    height: 100%;
+    padding-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: center;
+ }
+ .modal .editAndInsertForm button{
+    width: 100%;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: myfont;
+    font-size: 1.1em;
+
+ }
+ .modal .editAndInsertForm .errorMessage{
+    color: red;
+    font-size: 0.9em;
+    margin: 20px 10px;
+    display: none;
+    animation: enterFromRight 0.5s;
+ }
+ .modal .editAndInsertForm .fieldContainer{
+    /* border: solid 2px; */
+    padding-right: 10px;
+    background-color:#222;
+    color: #666;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 1.10em;
+    width: 100%;
+    direction: rtl;
+    border-radius: 5px;
+    /* overflow: hidden; */
+    margin-bottom: 10px;
+    
+   
+ }
+  
+ .showPassIcon svg:nth-child(2){
+       display:none;
+ }
+ .showPassIcon svg:nth-child(1){
+    display:inline-block;
+}
+ .hidePassIcon svg:nth-child(1){
+    display:none;
+}
+.hidePassIcon svg:nth-child(2){
+    display:inline-block;
+}
+ .myradio{
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    display: flex;
+    border-radius: 50%;
+    font-size: 0.5em !important;
+    margin-left: 20px;
+    cursor: pointer;
+ }
+ .myradio:hover{
+    background-color: #666;
+ }
+ .myradio input{
+    display: none;
+ }
+
+ .myradio div{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scale: 0;
+ }
+ .myradio div::after{
+    content: "";
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background-color: white;
+    display: block;
+ }
+
+ .myradio input:checked~div{
+    scale: 1;
+ }
+.modal .pictureBox{
+    padding: 10px;
+}
+.modal .pictureBox img{
+    width:400px ;
+    height: 500px;
+    border-radius: 10px;
+ 
+}
+
+.modal .messageBox{
+    display: none;
+    padding-top: 30px;
+    overflow: hidden;
+ }
+ .modal .messageBox .messageIcon{
+    width: 100px;
+    height: 100px;
+    border: solid 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em !important;
+    position: absolute;
+    top: -50px;
+    left:calc( 50% - 50px);
+    background-color:#222;
+ }
+ .modal .messageBox span{
+       display: block;
+       margin: 5px;
+ }
+ .modal .messageBox .title{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(187, 3, 3);
+}
+.modal .messageBox .message{
+    font-weight:normal;
+
+}
+.modal .messageBox .buttonContainer{
+    text-align: center;
+    margin-top: 20px;
+    padding: 3px;
+}
+ .modal .messageBox button{
+    width: 45%;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+ }
+ .modal .messageBox button:hover{
+opacity: 0.5; 
+}
+.products{
+    padding: 50px 0px 10px 0px;
+
+}
+.popupMessage{
+   background-color: darkgreen;
+   width: 100%;
+   border-radius: 10px;
+   font-size: 0.85em;
+   font-weight: bold;
+   text-align: center;
+   padding: 5px;
+   position: absolute;
+   top: 0px;
+   opacity: 0;
+   transition-duration: 1s;
+   
+}
+.popupMessage .closeButton{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 1.5em;
+    line-height:20px;
+    cursor: pointer;
+}
+
+.products .toolBar{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.products .toolBar #searchSection{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+    font-weight: lighter;
+    background-color: rgba(50,50,50,0.5) !important;
+    border: solid 1px #888;
+    padding-right: 5px;
+    border-radius: 5px;
+    margin-left: auto;
+}
+
+
+.products .toolBar #searchSection .search{
+    display: flex;
+}
+.products .toolBar #searchSection .search input{
+ 
+  border-style: none;
+  background-color: transparent;
+  width: 400px;
+  margin-right: 5px;
+  outline: none;
+  color: white;
+  padding: 5px;
+  font-size: 0.7em;
+  display: inline-block;
+  user-select: none;
+}
+.products .toolBar #searchSection .search input::placeholder{
+    color: white;
+    transition-duration: 0.5s;
+}
+.products .toolBar #searchSection .search input:focus::placeholder{
+translate: 0px -150%;
+}
+
+.products .toolBar #searchSection .search{
+    cursor: pointer;
+}
+.products .toolBar .addSection{
+    background-color: rgba(50,50,50,0.5) !important;
+    border: solid 1px #888;
+    border-radius: 5px;
+    color: #ccc;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.products .toolBar .addSection:hover{
+    background-color: darkgreen !important;
+}
+.products .toolBar span{
+    font-size: 0.6em;
+    margin-left: 5px;
+}
+table{
+    color: #ccc;
+    font-size: 0.7em;
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 1px 1px #888;
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 5px;
+}
+table th:nth-child(2){
+    width:80%;
+    
+}
+table img{
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+table img:hover{
+    box-shadow: 0px 0px 3px 1px #ccc;
+}
+table .button{
+    font-size: 1.5em;
+    cursor: pointer;
+    
+}
+table .button:hover{
+    opacity: 0.5;
+}
+table th{
+    padding: 15px;
+    color:#eee;
+}
+table td{
+    text-align: center;
+    vertical-align: middle;
+}
+table thead tr{
+    background-color: rgba(50,50,50,0.5) !important;
+    border-bottom: solid 1px #888;
+    height: 70px;
+}
+
+table tr:nth-of-type(odd){
+    background-color: rgba(100,100,100,0.5);
+}
+
+table tr:nth-of-type(even){
+    background-color: rgba(50,50,50,0.5);
+}
+
+@media screen and (max-width:1200px) {
+
+
+main .products .toolBar{
+    font-size: 0.8em;
+   
+}
+.products .toolBar #searchSection .search input{
+   width: 350px;
+}
+table{
+    font-size: 0.5em;
+}
+}
+
+@media screen and (max-width:991px) {
+    header .hambergerMenu{
+        display: flex;
+    }
+    .products .toolBar .addSection span{
+     display: none;
+    }
+    .products .toolBar .addSection {
+       font-size: 1.8em;
+       }
+       .products .toolBar #searchSection .search input{
+        width: 300px;
+     }
+     .modal .editAndInsertForm{
+        width:100%;
+        height: 100%;
+        font-size: 0.7em;
+       padding-top: 30px;
+     }
+    
+     
+     .modal .editAndInsertForm .editAndInsertFormIcon{
+        width:80px;
+        height: 80px;
+        top: -40px;
+        left:calc( 50% - 40px);
+     }
+     .modal .editAndInsertForm  .selectPictureButon{
+        margin-bottom: 5px;
+     }
+     .modal .editAndInsertForm  input{
+        margin-bottom: 5px;
+     }
+     
+
+}
+
+@media screen and (max-width:767px) {
+    .products .toolBar .addSection {
+        font-size: 1.6em;
+        }
+        .products .toolBar #searchSection .search input{
+         width: 200px;
+      }
+      .modal .editAndInsertForm .editAndInsertFormIcon{
+        width:50px;
+        height:50px;
+        top: -25px;
+        left:calc( 50% - 25px);
+     }
+    
+}
+
+@media screen and (max-width:533px) {
+
+main .products {
+    width: 75%;
+
+ }
+ .modal .container .leftAndRightModal{
+    font-size: 0.8em;
+   
+ }
+}

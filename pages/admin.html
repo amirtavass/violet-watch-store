@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/adminpage.css">
+    <script src="../script/adminScript.js" defer></script>
+     
+    <link rel="stylesheet" href="../fonts/awsome/css/all.min.css">
+    <script src="../fonts/awsome/js/all.min.js"></script>
+</head>
+<body>
+    <div class="modal">
+        <div class="container">
+            <span class="closeButton">&times;</span>
+            
+
+            <div class="editAndInsertForm">
+                <div class="editAndInsertFormIcon"> 
+                    <!-- <i class="fa-regular fa-user"></i> -->
+                    <i class="fa-solid fa-circle-plus"></i>
+                </div>
+            
+            
+               
+                <form action="" method="post">
+                        <input type="hidden" name="idFeild" id="idFeild">
+                        <input type="text" name="name" id="name" placeholder="مدل">
+
+              
+                        <input type="text" name="case_" id="case_" placeholder="ویژگی های ظاهری">
+                   
+
+                    
+                        <input type="text" name="strap" id="strap" placeholder="نوع بند">
+                 
+
+                   
+                        <input type="text" name="glasp" id="glasp" placeholder="سگک">
+                    
+
+                    <div >
+                        <label class="selectPictureButon" for="picUrl">انتخاب تصویر</label>
+                        <input type="file" accept=".jpg,.png" name="picUrl" id="picUrl" >
+                    </div>
+
+                    <div class="fieldContainer">
+                        <label for="man">مردانه</label>
+                        <label class="myradio">
+                            <input type="radio"name="gender" id="man" checked >
+                            <div></div>
+                        </label>
+                       
+                        <label for="woman">زنانه</label>
+                        <label class="myradio">
+                            <input type="radio" name="gender" id="woman" >
+                            <div></div>
+                        </label>
+                    </div>
+
+                    <button type="button" name="logInBtn" id="logInBtn">ذخیره محصول</button>
+                    <span class="errorMessage"></span>
+                </form>
+               
+            </div> 
+
+            <div class="changePass">
+                <div class="changePassIcon"> 
+                    <i class="fa-regular fa-user"></i>
+                </div>
+            
+                <form action="" method="post">
+                    <div class="fieldContainer">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="currentPassword" id="currentPassword" placeholder="کلمه عبور فعلی">
+                        <span class="showPassIcon "> <i class="fa-regular fa-eye"></i><i class="fa-regular fa-eye-slash"></i></span>
+                       
+                    </div>
+
+                    <div class="fieldContainer">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="newPassword" id="newPassword" placeholder="کلمه عبورجدید">
+                        <span class="showPassIcon "> <i class="fa-regular fa-eye"></i><i class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+
+                    <div class="fieldContainer">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="repeatedPassword" id="repeatedPassword" placeholder="تکرار کلمه عبورجدید">
+                        <span class="showPassIcon "> <i class="fa-regular fa-eye"></i><i class="fa-regular fa-eye-slash"></i></span>
+                    </div>
+                    <button type="button" name="changePassBtn" id="changePassBtn">تغییر کلمه عبور</button>
+                </form>
+                
+                <span class="changePassErrorMessage"></span>
+           
+            </div> 
+
+            <div class="messageBox">
+                            <div class="messageIcon"> 
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                          
+                            <span class="title">حذف محصول</span>
+                            <span class="message">آیا از حذف محصول اطمینان دارید؟</span>
+                            <div class="buttonContainer">
+                                <button type="button" class="cancelButton">خیر</button>
+                                <button type="button" class="okButton">بله</button>
+                            </div>
+                        </div> 
+
+          <div class="pictureBox">
+                   <img class="picture" src="" alt="">
+          </div>
+          
+          
+           
+          </div>
+           
+        </div>
+        
+    </div>
+    <header>
+        <div class="hambergerMenu " >
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+ <div class="leftAndRightHeader">
+      <div id="rightHeader">
+        <div id="searchSection">
+            <img src="../pictures/flag.jpg" alt="">
+            
+        </div>
+        <nav class="menus">
+
+             <a href="../index.html" target="_blank">مشاهده سایت</a>
+             <a >تغییر کلمه عبور</a>
+             <a href="../index.html" target="_blank">خروج</a>
+        </nav>
+      </div>
+
+      <div id="leftHeader"><img class="logo" src="../pictures/logo.png" alt=""></div>
+      </div>
+     
+    </header>
+
+    <aside>
+        <nav class="menus">
+            <a href="../index.html" target="_blank">مشاهده سایت</a>
+            <a >تغییر کلمه عبور</a>
+            <a href="../index.html" target="_blank">خروج</a>
+       </nav>
+    </aside>
+    <main >
+        <div class="backgroundImage"></div>
+
+        
+
+        <div class="products"> 
+            <div class="popupMessage">
+                <span class="closeButton">&times;</span>
+                <span class="message">عملیات با موفقیت انجام شد</span>
+            </div>
+            <div class="toolBar">
+                <div id="searchSection">
+                    <div class="search" >
+                        <i><i class="fa-solid fa-magnifying-glass" ></i></i>
+                        <input autocomplete="off" id="searchTextFeild" type="search" placeholder="جستجو..." >
+                    </div>
+                </div>
+                <div class="addSection">
+                    <span>اضافه کردن محصول</span>
+                    <i class="fa-solid fa-circle-plus"></i>
+                </div>
+            </div>
+            <table >
+                <thead>
+                    <tr>
+                        <th>تصویر</th>
+                        <th>نام محصول</th>
+                        <th>ویرایش</th>
+                        <th>حذف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+            <nav> 
+            </nav>
+        </div>
+    </main>
+</body>
+</html>
