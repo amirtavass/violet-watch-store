@@ -2,7 +2,7 @@
 
 A responsive e-commerce website for a watch store built with PHP, MySQL, and vanilla JavaScript. Features bilingual support (Persian/English), dark mode, and a complete admin panel for product management.
 
-![Main Page](screenshots/main-page.png)
+![image](https://github.com/user-attachments/assets/d065699e-9e4a-4083-b3c1-571be597db6f)
 
 ## 🌟 Live Demo
 
