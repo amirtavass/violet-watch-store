@@ -14,7 +14,7 @@ let curentMode = "";
 //array of products
 let productsData = "";
 // Language state
-let currentLang = "fa"; // Default Persian
+let currentLang = "en"; // Default English
 
 // Translations object
 const translations = {
@@ -522,50 +522,6 @@ function updateLanguage() {
     selectPage(1);
   }
 }
-ideMenus[2].textContent = translations[currentLang].aboutUs;
-asideMenus[3].textContent = translations[currentLang].contactUs;
-asideMenus[4].textContent = translations[currentLang].adminLogin;
-
-// Update button boxes
-document.querySelectorAll(".buttonBoxMan strong")[0].textContent =
-  translations[currentLang].products;
-document.querySelectorAll(".buttonBoxMan strong")[1].textContent =
-  translations[currentLang].menProducts;
-document.querySelectorAll(".buttonBoxWoman strong")[0].textContent =
-  translations[currentLang].products;
-document.querySelectorAll(".buttonBoxWoman strong")[1].textContent =
-  translations[currentLang].womenProducts;
-
-// Update search placeholder
-document.getElementById("searchTextFeild").placeholder =
-  translations[currentLang].search;
-
-// Update login form
-document.getElementById("userName").placeholder =
-  translations[currentLang].username;
-document.getElementById("password").placeholder =
-  translations[currentLang].password;
-document.getElementById("logInBtn").textContent =
-  translations[currentLang].login;
-document.querySelector(".loginErrorMessage").textContent =
-  translations[currentLang].loginError;
-
-// Update contact info
-let contactSections = document.querySelectorAll(".contactSection h3");
-if (contactSections.length >= 3) {
-  contactSections[0].textContent = translations[currentLang].address;
-  contactSections[1].textContent = translations[currentLang].phone;
-  contactSections[2].textContent = translations[currentLang].email;
-}
-
-// Update language button
-let langToggleSpan = document.querySelector(".lang-toggle span");
-if (langToggleSpan) {
-  langToggleSpan.textContent = currentLang === "fa" ? "EN" : "فا";
-}
-
-// Update about text
-updateAboutText();
 
 // Update about us text with styling
 function updateAboutText() {
