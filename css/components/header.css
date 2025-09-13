@@ -1,0 +1,151 @@
+/* ===== HEADER ===== */
+
+header {
+  padding: 10px;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 2;
+  height: var(--headerHeight);
+}
+header .leftAndRightHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+header #leftHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+header #leftHeader .logo {
+  margin-top: 0px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+header #leftHeader .logo:hover {
+  transform: scale(1.01);
+}
+header #rightHeader {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+header #rightHeader #searchSection {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  font-size: 1.2em;
+  font-weight: lighter;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  position: relative;
+}
+
+header #rightHeader #searchSection img {
+  border-radius: 50%;
+  margin-left: 30px;
+  width: 50px;
+  transition: all 0.3s ease;
+}
+header #rightHeader #searchSection .search {
+  display: none;
+  margin-right: 10px;
+}
+header #rightHeader #searchSection .search input {
+  border-style: none none solid none;
+  border-color: var(--border-color);
+  border-width: 1px;
+  background-color: transparent;
+  width: 0px;
+  margin-right: 5px;
+  outline: none;
+  color: var(--text-primary);
+  padding: 5px 10px;
+  font-size: 0.7em;
+  opacity: 0;
+  display: none;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+header #rightHeader #searchSection .search input.active {
+  width: 220px;
+  opacity: 1;
+}
+header #rightHeader #searchSection.search-active {
+  flex: 1;
+  margin-left: 20px;
+}
+header #rightHeader #searchSection .search input::placeholder {
+  color: var(--text-primary);
+}
+header #rightHeader #searchSection .search input:focus::placeholder {
+  translate: 0px -110%;
+}
+
+header #rightHeader #searchSection .search {
+  cursor: pointer;
+}
+header .hambergerMenu {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  display: none;
+  cursor: pointer;
+}
+header .hambergerMenu div {
+  height: 17%;
+  background-color: var(--text-primary);
+  border-radius: 5px;
+}
+
+.activerHambergerMenu div:nth-of-type(1) {
+  translate: 0px 240%;
+  rotate: 45deg;
+}
+.activerHambergerMenu div:nth-of-type(2) {
+  opacity: 0;
+}
+.activerHambergerMenu div:nth-of-type(3) {
+  translate: 0px -240%;
+  rotate: -45deg;
+}
+
+/* Navigation */
+header #rightHeader nav {
+  margin-top: 22px;
+}
+nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.75em;
+  margin-left: 5px;
+  padding: 3px;
+  border-radius: 30px;
+  width: 150px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition-duration: 1s;
+  cursor: pointer;
+}
+header #rightHeader nav a:hover {
+  border-color: var(--border-color);
+}
+
+.menuItemActive {
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+    var(--bg-primary) 50%,
+    var(--text-secondary)
+  );
+  border-color: var(--border-color) !important;
+}

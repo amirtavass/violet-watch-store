@@ -1,0 +1,256 @@
+@keyframes zoomIn {
+  0% {
+    scale: 0;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes enterFromRight {
+  from {
+    translate: 120% 0px;
+  }
+  to {
+    translate: 0px 0px;
+  }
+}
+@media screen and (max-width: 1299px) {
+  main .products {
+    width: 68%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  header #rightHeader nav a {
+    font-size: 0.6em;
+    width: 130px;
+    margin-left: 3px;
+  }
+  header #leftHeader .logo {
+    width: 120px;
+    margin-top: 15px;
+  }
+
+  main .products .product {
+    width: calc(var(--productWidth) * 0.85);
+    height: calc(var(--productHeight) * 0.85);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  header .hambergerMenu {
+    display: flex;
+  }
+  header #rightHeader nav {
+    display: none;
+  }
+  header #leftHeader .logo {
+    width: 100px;
+    margin-top: 15px;
+  }
+  header {
+    justify-content: space-between;
+  }
+
+  #searchSection img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  header #rightHeader #searchSection .search input.active {
+    width: 150px; /* Smaller width on mobile */
+  }
+
+  main .buttonBox {
+    font-size: 0.8em;
+  }
+
+  .modal .container .leftAndRightModal {
+    font-size: 0.8em;
+  }
+  .modal .container .leftAndRightModal .left img {
+    scale: 0.8;
+  }
+  .modal .container .contactUs {
+    width: 600px;
+  }
+  .modal .contactUs .contactSection h3 {
+    font-size: 0.9em;
+  }
+  .modal .contactUs .contactSection span {
+    font-size: 0.7em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  header .leftAndRightHeader {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+  }
+  header #leftHeader {
+    width: 100%;
+    justify-content: center;
+    padding: 0 10px;
+    position: relative;
+    order: 1;
+  }
+  header #leftHeader .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  header #leftHeader .logo:hover {
+    transform: translateX(-50%) scale(1.02); /* Combine centering with subtle scale */
+  }
+  header #rightHeader {
+    width: 100%;
+    order: 2;
+    margin-top: 45px;
+  }
+  .controls {
+    margin-left: 0;
+    position: absolute;
+    left: 10px;
+    margin-bottom: 40px;
+  }
+
+  header #rightHeader #searchSection {
+    gap: 10px;
+  }
+  header #rightHeader #searchSection img {
+    margin-left: 10px;
+  }
+  header #rightHeader #searchSection .search {
+    font-size: 0.8em;
+    margin-right: -10px;
+  }
+  header #rightHeader #searchSection .search input {
+    max-width: 150px;
+    margin-right: 0px;
+  }
+  header #rightHeader #searchSection .search input.active {
+    width: 150px;
+  }
+
+  main .products {
+    width: 70%;
+  }
+  main .side {
+    display: none;
+  }
+  main .products .product {
+    width: calc(var(--productWidth) * 0.7);
+    height: calc(var(--productHeight) * 0.7);
+    margin: 10px;
+  }
+  .womanActive {
+    justify-content: end;
+  }
+  .manActive {
+    justify-content: start;
+  }
+  .womanActive .buttonBox {
+    top: var(--headerHeight);
+  }
+  .manActive .buttonBox {
+    top: var(--headerHeight);
+  }
+
+  .modal .container .leftAndRightModal {
+    flex-direction: column-reverse;
+    overflow: auto;
+    height: 100%;
+  }
+  .modal .left {
+    padding: 0px;
+
+    height: 45%;
+  }
+  .modal .right {
+    height: 55%;
+  }
+  .modal .container {
+    width: 95%;
+    padding: 15px;
+    padding-top: 50px;
+  }
+  .modal .container .contactUs {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+  .modal .contactUs .contactSection {
+    width: 100%;
+    height: 300px;
+    margin: 10px 0;
+  }
+  .modal .contactUs .contactSection h3 {
+    font-size: 0.8em;
+  }
+  .modal .contactUs .contactSection span {
+    font-size: 0.6em;
+  }
+  .modal .aboutUs {
+    width: 100%;
+  }
+  .modal .aboutUs .leftAndRightAboutUs {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  .modal .aboutUs #leftAboutUs {
+    margin-right: 0;
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+  .modal .aboutUs #leftAboutUs img {
+    width: 120px;
+    height: auto;
+  }
+  .modal .aboutUs #rightAboutUs {
+    font-size: 0.65em;
+    padding: 0 10px;
+    text-align: right;
+  }
+  .modal .loginForm {
+    position: relative;
+    padding-top: 120px;
+    margin-top: 50px;
+  }
+  .modal .loginForm .loginIcon {
+    width: 100px;
+    height: 100px;
+    font-size: 3em !important;
+    top: 10px;
+    left: calc(50% - 50px);
+  }
+}
+
+@media screen and (max-width: 533px) {
+  main .products {
+    width: 75%;
+  }
+  .modal .container .leftAndRightModal {
+    font-size: 0.8em;
+  }
+  .modal .contactUs .contactSection {
+    height: 250px;
+  }
+  .modal .contactUs .contactSection .icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.3em;
+  }
+  .modal .contactUs .contactSection:hover .icon {
+    top: -35px;
+  }
+  .theme-toggle span,
+  .lang-toggle span {
+    display: none;
+  }
+  .theme-toggle,
+  .lang-toggle {
+    padding: 8px 10px;
+  }
+}
