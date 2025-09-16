@@ -1,6 +1,6 @@
 # 🕰️ Violet Watch Store
 
-A responsive e-commerce website for a watch store built with PHP, MySQL, and vanilla JavaScript. Features bilingual support (Persian/English), dark mode, and a complete admin panel for product management.
+A fully responsive e-commerce website for a watch store built with PHP, MySQL, and vanilla JavaScript. Features complete bilingual support (Persian/English), dark mode, modular ES6 architecture, and a comprehensive admin panel for product management.
 
 ![image](https://github.com/user-attachments/assets/d065699e-9e4a-4083-b3c1-571be597db6f)
 
@@ -8,17 +8,14 @@ A responsive e-commerce website for a watch store built with PHP, MySQL, and van
 
 🔗 **[View Live Demo](https://amirtavassoli.ir)**
 
-**Admin Panel Access:**
-- 🔗 **Admin Login**: [https://amirtavassoli.ir](https://amirtavassoli.ir) → Click "ورود مدیریت"
-- 👤 **Username**: `admin`
-- 🔑 **Password**: `123`
-
-*Full production site with complete backend functionality and database integration*
+_Full production site with complete backend functionality and database integration_
 
 ## ✨ Features
 
+Frontend
+
+- **🌍 Bilingual Support**: Complete Persian (RTL) and English (LTR) with dynamic language switching
 - **📱 Responsive Design**: Mobile-first approach that works on all devices
-- **🌍 Bilingual Support**: Persian (RTL) and English (LTR) with dynamic language switching
 - **🌙 Dark/Light Theme**: Toggle between themes with localStorage persistence
 - **🛍️ Product Management**: Complete CRUD operations for watch inventory
 - **🔍 Search & Filter**: Advanced search by name, gender, and specifications
@@ -29,7 +26,7 @@ A responsive e-commerce website for a watch store built with PHP, MySQL, and van
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6 Modules)
 - **Backend**: PHP 7+
 - **Database**: MySQL 5.7+
 - **Icons**: Font Awesome 6
@@ -38,29 +35,29 @@ A responsive e-commerce website for a watch store built with PHP, MySQL, and van
 ## 📸 Screenshots
 
 ### 🏠 Main Page
+
 ![image](https://github.com/user-attachments/assets/d065699e-9e4a-4083-b3c1-571be597db6f)
 
-
 ### 🛍️ Product Gallery
+
 ![image](https://github.com/user-attachments/assets/0847d5cb-842b-4f4a-8923-9fa8a5743eae)
 
-
 ### 📱 Mobile Responsive
+
 ![image](https://github.com/user-attachments/assets/896edfe2-8641-42a2-bf37-1cd5e09240cd)
 
-
 ### 👨‍💼 Admin Panel
+
 ![image](https://github.com/user-attachments/assets/99676395-830d-4cdd-b955-7a2373056c53)
 
-
 ### 🌍 Language Support
+
 ![image](https://github.com/user-attachments/assets/2d055983-4dd2-42a1-84d6-e905cfaa611c)
-
-
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - PHP 7.0 or higher
 - MySQL 5.7 or higher
 - Web server (Apache/Nginx) or XAMPP/WAMP/LAMP
@@ -68,28 +65,32 @@ A responsive e-commerce website for a watch store built with PHP, MySQL, and van
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/amirtavassoli/violet-watch-store.git
    cd violet-watch-store
    ```
 
 2. **Database Setup**
+
    ```sql
    -- Create database
    CREATE DATABASE amirSiteDb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   
+
    -- Import the database
    mysql -u your_username -p amirSiteDb < amirsitedb.sql
    ```
 
 3. **Configure Database Connection**
-   
+
    Update `pages/page2.php` with your database credentials:
+
    ```php
    $con = mysqli_connect("localhost", "your_username", "your_password", "amirSiteDb");
    ```
 
 4. **Set Permissions**
+
    ```bash
    chmod 755 pictures/products/
    ```
@@ -108,9 +109,21 @@ violet-watch-store/
 │   ├── 📄 page2.php           # Backend API endpoints
 │   └── 📄 admin.html          # Admin panel interface
 ├── 📁 css/
-│   └── 📄 style.css           # Main stylesheet with responsive design
+│   ├── style.css           # Legacy monolithic styles
+│   └── components/         # Modular CSS structure
+│       ├── base.css        # Base styles and variables
+│       ├── header.css      # Header components
+│       ├── modal.css       # Modal styles
+│       ├── mainAndproducts.css # Main content
+│       └── responsive.css  # Media queries
 ├── 📁 script/
-│   └── 📄 script.js           # Frontend JavaScript logic
+│   ├── script.js           # Main bundled JavaScript (for compatibility)
+│   └── modules/            # ES6 modules (development version)
+│       ├── config.js       # Configuration and translations
+│       ├── ajax.js         # AJAX utilities
+│       ├── navigation.js   # Navigation handlers
+│       ├── modal.js        # Modal system
+│       └── products.js     # Product management
 ├── 📁 pictures/
 │   ├── 📁 products/           # Product images directory
 │   ├── 🖼️ logo.png            # Store logo
@@ -130,29 +143,32 @@ violet-watch-store/
 
 The backend (`page2.php`) provides these endpoints:
 
-| Endpoint | Method | Parameters | Description |
-|----------|--------|------------|-------------|
-| `select` | POST | `name`, `gender`, `page` | Get products with search/filter |
-| `insert` | POST | Product data + image | Add new product |
-| `update` | POST | Product data + image | Update existing product |
-| `delete` | POST | `id`, `picUrl` | Delete product |
-| `login` | POST | `id`, `name` | Admin authentication |
-| `changePass` | POST | Password data | Change admin password |
+| Endpoint     | Method | Parameters               | Description                     |
+| ------------ | ------ | ------------------------ | ------------------------------- |
+| `select`     | POST   | `name`, `gender`, `page` | Get products with search/filter |
+| `insert`     | POST   | Product data + image     | Add new product                 |
+| `update`     | POST   | Product data + image     | Update existing product         |
+| `delete`     | POST   | `id`, `picUrl`           | Delete product                  |
+| `login`      | POST   | `id`, `name`             | Admin authentication            |
+| `changePass` | POST   | Password data            | Change admin password           |
 
 ## 🌟 Key Features Explained
 
 ### 🌍 Bilingual Support
+
 - **Dynamic Language Switching**: Toggle between Persian (RTL) and English (LTR)
 - **Translation System**: JavaScript-based translation with proper text direction
 - **Cultural Adaptation**: Proper handling of Persian typography and layout
 
 ### 🛍️ Product Management
+
 - **Image Upload**: Secure file upload with validation
 - **Search System**: Multi-field search across product attributes
 - **Pagination**: Efficient loading of large product catalogs
 - **Admin Interface**: User-friendly CRUD operations
 
 ### 📱 Responsive Design
+
 - **Mobile-First**: Optimized for mobile devices first
 - **Flexible Layouts**: CSS Grid and Flexbox for adaptive design
 - **Touch-Friendly**: Large buttons and touch targets for mobile
@@ -169,7 +185,9 @@ The backend (`page2.php`) provides these endpoints:
 ## 🎨 Customization
 
 ### Changing Colors
+
 Edit CSS custom properties in `css/style.css`:
+
 ```css
 :root {
   --bg-primary: #1a1a1a;
@@ -179,7 +197,9 @@ Edit CSS custom properties in `css/style.css`:
 ```
 
 ### Adding Languages
+
 Add translations in `script/script.js`:
+
 ```javascript
 const translations = {
   // Add your language here
@@ -187,7 +207,7 @@ const translations = {
     home: "Inicio",
     products: "Productos",
     // ... more translations
-  }
+  },
 };
 ```
 
@@ -224,11 +244,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Amir Tavassoli**
+
 - 🌐 Website: [amirtavassoli.ir](https://amirtavassoli.ir)
 - 🐙 GitHub: [@amirtavassoli](https://github.com/amirtavassoli)
 - 📧 Email: amirtavass62@gmail.com
 
-*Full-stack developer passionate about creating responsive, multilingual web applications*
+_Full-stack developer passionate about creating responsive, multilingual web applications_
 
 ## 🙏 Acknowledgments
 

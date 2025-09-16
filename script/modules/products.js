@@ -1,6 +1,11 @@
-import { ajax } from "./ajax";
-import { currentMode, productsData, currentLang, translations } from "./config";
-import { showModal } from "./modal";
+import { ajax } from "./ajax.js";
+import {
+  currentMode,
+  productsData,
+  currentLang,
+  translations,
+} from "./config.js";
+import { showModal } from "./modal.js";
 
 let searchedValue;
 

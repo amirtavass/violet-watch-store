@@ -1,5 +1,5 @@
-import { setCurrentMode } from "./config";
-import { selectPage } from "./products";
+import { setCurrentMode } from "./config.js";
+import { selectPage } from "./products.js";
 
 let menus = document.querySelectorAll("header nav a");
 let main = document.querySelector("main");

@@ -1,19 +1,19 @@
-import { ajax } from "./modules/ajax";
+import { ajax } from "./modules/ajax.js";
 import {
   setCurrentLang,
   currentLang,
   translations,
   updateAboutText,
-} from "./modules/config";
+} from "./modules/config.js";
 import {
   hambergerMenuSwitch,
   homeSelect,
   productsSelect,
   buttonBoxSelect,
   closeHamburgerMenu,
-} from "./modules/navigation";
-import { selectPage } from "./modules/products";
-import { showModal, closeModal } from "./modules/modal";
+} from "./modules/navigation.js";
+import { selectPage } from "./modules/products.js";
+import { showModal, closeModal } from "./modules/modal.js";
 
 let menus = document.querySelectorAll("header nav a");
 let asideMenus = document.querySelectorAll("aside nav a");

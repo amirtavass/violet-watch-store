@@ -3,8 +3,8 @@ import {
   currentLang,
   translations,
   updateAboutText,
-} from "./config";
-import { closeHamburgerMenu } from "./navigation";
+} from "./config.js";
+import { closeHamburgerMenu } from "./navigation.js";
 
 export function showModal(mode, index) {
   // Close hamburger menu when modal opens

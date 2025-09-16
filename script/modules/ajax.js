@@ -1,4 +1,4 @@
-import { setProductsData } from "./config";
+import { setProductsData } from "./config.js";
 
 //ajax
 
@@ -15,9 +15,9 @@ export function ajax(
 ) {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function () {
-    if (this.responseText == "0") setProductsData = "";
+    if (this.responseText == "0") setProductsData("");
     else {
-      setProductsData = JSON.parse(this.responseText);
+      setProductsData(JSON.parse(this.responseText));
       //   document.write(this.responseText);
     }
   };
