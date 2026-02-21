@@ -11,6 +11,7 @@ header {
   top: 0px;
   z-index: 2;
   height: var(--headerHeight);
+  position: relative;
 }
 header .leftAndRightHeader {
   display: flex;
@@ -98,8 +99,15 @@ header .hambergerMenu {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  display: none;
   cursor: pointer;
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  z-index: 6;
+}
+body.lang-en header .hambergerMenu {
+  left: 10px;
+  right: auto;
 }
 header .hambergerMenu div {
   height: 17%;
@@ -122,6 +130,7 @@ header .hambergerMenu div {
 /* Navigation */
 header #rightHeader nav {
   margin-top: 22px;
+  display: none;
 }
 nav a {
   display: inline-block;

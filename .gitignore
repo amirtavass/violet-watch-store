@@ -76,3 +76,30 @@ php_errors.log
 *.zip
 *.tar.gz
 *.rar
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+.htpasswd
+
+# SSH and private key material
+.ssh/
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Local environment overrides
+.env.*
+!.env.example
+!.env.*.example
+
+# SQL dumps and data exports (can contain sensitive production data)
+*.sql
+*.sql.gz
+!schema.sql
+!migrations/*.sql

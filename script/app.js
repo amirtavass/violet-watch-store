@@ -4,6 +4,7 @@ import {
   currentLang,
   translations,
   updateAboutText,
+  productsData,
 } from "./modules/config.js";
 import {
   hambergerMenuSwitch,
@@ -74,7 +75,7 @@ function setupEventListeners() {
 
   // Search
   let searchIcon = document.querySelector(
-    "header #rightHeader #searchSection i"
+    "header #rightHeader #searchSection i",
   );
   searchIcon.addEventListener("click", showSearch);
 
@@ -115,10 +116,13 @@ function login() {
   let pass = document.getElementById("password").value;
   ajax("login", username, pass);
 
-  if (productsData == "")
+  // Check the response after ajax completes (synchronous call)
+  if (productsData == "1") {
+    location.replace("pages/admin.html");
+  } else {
     document.getElementsByClassName("loginErrorMessage")[0].style.display =
       "inline-block";
-  else location.replace("pages/admin.html");
+  }
 }
 function showSearch(e) {
   let searchSection = document.querySelector("#searchSection");
@@ -269,6 +273,7 @@ function loadSavedPreferences() {
   const savedLang = localStorage.getItem("language");
   if (savedLang) {
     setCurrentLang(savedLang);
-    updateLanguage();
   }
+  // Always call updateLanguage to apply the default or saved language
+  updateLanguage();
 }

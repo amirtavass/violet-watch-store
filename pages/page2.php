@@ -1,6 +1,8 @@
 <?php
-$con= mysqli_connect("localhost","root","","amirSiteDb");
-mysqli_set_charset($con,"UTF8");
+header('Content-Type: application/json; charset=utf-8');
+<?php
+$con= mysqli_connect("localhost","violet_user","VioletStore2026Secure123","amirSiteDb");
+mysqli_set_charset($con,"utf8mb4");
 if($_POST["mode"]=="select"){
 	if($_POST["id"]==""){
 		if($_POST["gender"]=="")
@@ -24,7 +26,7 @@ while($row=mysqli_fetch_object($r)){
 		  $ar2[$p++]=$ar[$j];
 	}
 	$ar2[$p]=["pages"=>count($ar)/6];
-    $myJSON = json_encode($ar2);
+    $myJSON = json_encode($ar2, JSON_UNESCAPED_UNICODE);
 	echo($myJSON);
 	}
 	else{

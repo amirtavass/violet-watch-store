@@ -68,7 +68,10 @@ main .buttonBox:hover strong:nth-of-type(2) {
 
 main .buttonBox:hover strong:nth-of-type(3) {
   translate: -10% 0px;
-  text-shadow: 0px 0px 5px gold, 0px 0px 6px gold, 0px 0px 7px gold;
+  text-shadow:
+    0px 0px 5px gold,
+    0px 0px 6px gold,
+    0px 0px 7px gold;
 }
 main .buttonBox strong:nth-of-type(3) {
   font-size: 4em;
@@ -360,22 +363,26 @@ body.dark-mode .navItemActive {
   header #rightHeader nav a {
     font-size: 0.6em;
     width: 130px;
-    margin-left: 3px;
+    margin-top: 20px;
   }
   header #leftHeader .logo {
     width: 120px;
     margin-top: 15px;
   }
 
-  main .products .product {
-    width: calc(var(--productWidth) * 0.85);
+    left: 5px;
+    top: -42px;
+    margin-bottom: 0;
+    z-index: 4;
     height: calc(var(--productHeight) * 0.85);
   }
 }
+    width: 100%;
+    justify-content: center;
 
 @media screen and (max-width: 991px) {
   header .hambergerMenu {
-    display: flex;
+    margin-left: 0;
   }
   header #rightHeader nav {
     display: none;
