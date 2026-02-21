@@ -6,7 +6,7 @@ A fully responsive e-commerce website for a watch store built with PHP, MySQL, a
 
 ## 🌟 Live Demo
 
-🔗 **[View Live Demo](https://amirtavassoli.ir)**
+🔗 **[View Live Demo](https://www.violetwatch.tech)**
 
 _Full production site with complete backend functionality and database integration_
 
