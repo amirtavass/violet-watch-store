@@ -36,15 +36,15 @@ Frontend
 
 ### 🏠 Main Page
 
-![image](https://github.com/user-attachments/assets/d065699e-9e4a-4083-b3c1-571be597db6f)
+![alt text](image.png)
 
 ### 🛍️ Product Gallery
 
-![image](https://github.com/user-attachments/assets/0847d5cb-842b-4f4a-8923-9fa8a5743eae)
+![alt text](image-1.png)
 
 ### 📱 Mobile Responsive
 
-![image](https://github.com/user-attachments/assets/896edfe2-8641-42a2-bf37-1cd5e09240cd)
+![alt text](image-2.png)
 
 ### 👨‍💼 Admin Panel
 
@@ -96,9 +96,8 @@ Frontend
    ```
 
 5. **Access the Application**
-   - 🌐 **Live Demo**: [https://amirtavassoli.ir](https://amirtavassoli.ir)
+   - 🌐 **Live Demo**: [https://www.violetwatch.tech](https://www.violetwatch.tech)
    - 💻 **Local Development**: `http://localhost/violet-watch-store/`
-   - 👨‍💼 **Admin**: Username: `admin`, Password: `123`
 
 ## 📁 Project Structure
 

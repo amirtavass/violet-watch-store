@@ -76,3 +76,10 @@ php_errors.log
 *.zip
 *.tar.gz
 *.rar
+# .NET API
+api/bin/
+api/obj/
+api/appsettings.Development.json
+api/wwwroot/images/products/*
+!api/wwwroot/images/products/.gitkeep
+api/seed/products.json

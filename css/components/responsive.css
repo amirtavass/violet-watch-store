@@ -14,6 +14,50 @@
     translate: 0px 0px;
   }
 }
+
+@media screen and (min-width: 768px) {
+  header {
+    position: relative;
+  }
+  header #rightHeader #searchSection {
+    position: static;
+    margin-left: 0;
+    width: 100%;
+  }
+  header #leftHeader .logo {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    margin-top: 0;
+    z-index: 4;
+  }
+  header #leftHeader .logo:hover {
+    transform: translateX(-50%) scale(1.01);
+  }
+
+  header #rightHeader #searchSection img {
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    transform: translateX(-50%);
+    margin-left: 0;
+    z-index: 5;
+  }
+
+  header #rightHeader #searchSection .search {
+    position: absolute;
+    top: 42px;
+    right: 74px;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  body.lang-en header #rightHeader #searchSection .search {
+    right: auto;
+    left: 74px;
+  }
+}
+
 @media screen and (max-width: 1299px) {
   main .products {
     width: 68%;
@@ -82,6 +126,19 @@
 }
 
 @media screen and (max-width: 767px) {
+  header {
+    position: relative;
+  }
+  header .hambergerMenu {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    z-index: 6;
+  }
+  body.lang-en header .hambergerMenu {
+    left: 10px;
+    right: auto;
+  }
   header .leftAndRightHeader {
     flex-direction: column;
     align-items: center;
@@ -105,20 +162,25 @@
   header #rightHeader {
     width: 100%;
     order: 2;
-    margin-top: 45px;
+    margin-top: 60px;
   }
   .controls {
     margin-left: 0;
     position: absolute;
-    left: 10px;
-    margin-bottom: 40px;
+    left: 5px;
+    top: -42px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    z-index: 4;
   }
 
   header #rightHeader #searchSection {
+    width: 100%;
+    justify-content: center;
     gap: 10px;
   }
   header #rightHeader #searchSection img {
-    margin-left: 10px;
+    margin-left: 0;
   }
   header #rightHeader #searchSection .search {
     font-size: 0.8em;

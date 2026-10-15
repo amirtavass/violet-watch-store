@@ -11,12 +11,15 @@ export function ajax(
   strap = "",
   picUrl = "",
   gender = "",
-  page = ""
+  page = "",
 ) {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function () {
     if (this.responseText == "0") setProductsData("");
-    else {
+    else if (mode === "login") {
+      // For login, just set the response as is (1 or 0)
+      setProductsData(this.responseText);
+    } else {
       setProductsData(JSON.parse(this.responseText));
       //   document.write(this.responseText);
     }
