@@ -18,6 +18,12 @@
 - **User:** `at7crt@bolton.ac.uk` (role: Owner)
 - **Region:** `germanywestcentral` — **forced**, see [challenges.md](challenges.md)
 - **CLI path:** `C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin\az.cmd`
+- **Custom domains:** not served on F1 (Free tier limitation); the hostname
+  bindings were removed. `violetwatch.tech` and `www.violetwatch.tech` are served
+  through the free Cloudflare Worker proxy, which rewrites `Host` and strips
+  `x-forwarded-host`/`x-original-host` (see
+  [deployment.md](deployment.md#8b-cloudflare-worker-free-plan)); do **not**
+  upgrade to B1.
 
 ### Provisioned resources
 
@@ -27,7 +33,7 @@
 | App Service plan | `plan-violet-free` | F1 (Free) Linux |
 | Web app | `violet-watch-store-api` | .NET 10, `violet-watch-store-api.azurewebsites.net` |
 | SQL server | `sql-violet-prod` | `sql-violet-prod.database.windows.net` |
-| SQL database | `amirSiteDb` | GeneralPurpose serverless, max 1 vCore |
+| SQL database | `amirSiteDb` | Standard S0 (10 DTU), 250 GB max — free-meter eligible |
 | SQL admin user | `violetadmin` | |
 | Firewall rules | `AllowAllAzureIPs` (0.0.0.0), `AllowLocalAdmin` (dev IP) | |
 
@@ -42,7 +48,8 @@ All secrets live **outside the repo** in:
 C:\Users\Pc Dayan\.azure\violet-mysql.env
 ```
 
-Contains: SQL credentials, `JWT_SECRET` (61 chars), and `AZURE_WEBAPP`.
+Contains: SQL credentials, `JWT_SECRET` (61 chars), `ADMIN_PASSWORD` (rotated
+production admin password), and `AZURE_WEBAPP`.
 These values are injected into Azure App Settings at deploy time and are **never
 committed**. (Note: the MySQL password was briefly exposed in a CLI debug log
 during provisioning — acceptable, but do not re-print it.)
@@ -70,9 +77,16 @@ ASP.NET Core Minimal API (`net10.0`), EF Core + SqlServer.
   - `GET /health`
   - All write endpoints require a `Bearer` token (401 without).
 - Key files: `Program.cs`, `Models/`, `Data/VioletDbContext.cs`,
-  `Data/DbSeeder.cs`, `Services/TokenService.cs`, `Endpoints/AuthEndpoints.cs`,
-  `Endpoints/ProductEndpoints.cs`, `Migrations/`, `seed/products.json`,
-  `wwwroot/images/products/`
+  `Data/DbSeeder.cs`, `Services/TokenService.cs`, `Services/ImageStorage.cs`,
+  `Endpoints/AuthEndpoints.cs`, `Endpoints/ProductEndpoints.cs`,
+  `Migrations/`, `seed/products.json`, `wwwroot/images/products/`
+- **Admin password:** rotated to a strong 20-character value stored as
+  `ADMIN_PASSWORD` in the secrets file. The old `admin`/`123` returns 401.
+- **Image storage:** uploads go to `/home/site/uploads/products` on App Service
+  (configurable via `Storage__ProductsPath`); seeded images from
+  `wwwroot/images/products` are copied there on startup and everything is served
+  from that folder at `/images/products`. `UseHttpsRedirection` is intentionally
+  absent for Cloudflare Flexible SSL compatibility.
 
 ### Frontend — `web/`
 
@@ -93,11 +107,12 @@ Vite + vanilla TypeScript, multi-page (`index.html` + `admin.html`).
   `Get-Content file -Raw | ssh root@138.68.154.176 "bash -s"` and normalise line
   endings with `-replace "\r\n","\n"`.
 - **Inline `node -e`:** breaks on quotes — use script files in `%TEMP%\opencode\`.
-- **PowerShell `Compress-Archive`** writes backslash paths that Linux Kudu
-  rejects — use `[System.IO.Compression.ZipFile]::CreateFromDirectory` instead.
+- **PowerShell `Compress-Archive`** (and Windows `ZipFile` in some runtimes)
+  writes backslash paths that Linux Kudu rejects — build the zip with a
+  `System.IO.Compression.ZipArchive` loop and `.Replace('\', '/')` on every entry.
 - **`.gitignore`** excludes: `api/bin/`, `api/obj/`,
   `api/appsettings.Development.json`, `api/wwwroot/images/products/*`
   (keep `.gitkeep`), `api/seed/products.json`.
-- **Known caveat:** images uploaded through the admin panel live in
-  `api/wwwroot` and may be lost on redeploy. Persistent `/home` storage is a
-  future improvement.
+- **Known caveat:** admin uploads now persist in `/home/site/uploads/products`,
+  but the `/home` volume is tied to the App Service instance — moving to a new
+  plan/region later requires copying that folder.

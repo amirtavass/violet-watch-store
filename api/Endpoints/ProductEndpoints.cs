@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Violet.Api.Data;
 using Violet.Api.Models;
+using Violet.Api.Services;
 
 namespace Violet.Api.Endpoints;
 
@@ -48,7 +49,7 @@ public static class ProductEndpoints
             return product is null ? Results.NotFound() : Results.Ok(product);
         });
 
-        group.MapPost("/", async (HttpRequest request, VioletDbContext db, IWebHostEnvironment env) =>
+        group.MapPost("/", async (HttpRequest request, VioletDbContext db, IWebHostEnvironment env, IConfiguration config) =>
         {
             var form = await ReadProductForm(request);
             if (form is null)
@@ -66,7 +67,7 @@ public static class ProductEndpoints
             var file = request.Form.Files.GetFile("pic");
             if (file is not null)
             {
-                var saved = await SaveImage(file, env);
+                var saved = await SaveImage(file, env, config);
                 if (saved is null)
                     return Results.BadRequest(new { error = "invalid_image" });
                 product.PicUrl = saved;
@@ -79,7 +80,7 @@ public static class ProductEndpoints
             return Results.Created($"/api/products/{product.Id}", dto);
         }).RequireAuthorization();
 
-        group.MapPut("/{id:int}", async (int id, HttpRequest request, VioletDbContext db, IWebHostEnvironment env) =>
+        group.MapPut("/{id:int}", async (int id, HttpRequest request, VioletDbContext db, IWebHostEnvironment env, IConfiguration config) =>
         {
             var product = await db.Products.FindAsync(id);
             if (product is null)
@@ -98,10 +99,10 @@ public static class ProductEndpoints
             var file = request.Form.Files.GetFile("pic");
             if (file is not null)
             {
-                var saved = await SaveImage(file, env);
+                var saved = await SaveImage(file, env, config);
                 if (saved is null)
                     return Results.BadRequest(new { error = "invalid_image" });
-                DeleteImage(product.PicUrl, env);
+                DeleteImage(product.PicUrl, env, config);
                 product.PicUrl = saved;
             }
 
@@ -111,7 +112,7 @@ public static class ProductEndpoints
             return Results.Ok(dto);
         }).RequireAuthorization();
 
-        group.MapDelete("/{id:int}", async (int id, VioletDbContext db, IWebHostEnvironment env) =>
+        group.MapDelete("/{id:int}", async (int id, VioletDbContext db, IWebHostEnvironment env, IConfiguration config) =>
         {
             var product = await db.Products.FindAsync(id);
             if (product is null)
@@ -119,7 +120,7 @@ public static class ProductEndpoints
 
             db.Products.Remove(product);
             await db.SaveChangesAsync();
-            DeleteImage(product.PicUrl, env);
+            DeleteImage(product.PicUrl, env, config);
 
             return Results.Ok(new { deleted = true });
         }).RequireAuthorization();
@@ -143,7 +144,7 @@ public static class ProductEndpoints
         return new ProductForm(name, case_, strap, glasp, gender);
     }
 
-    private static async Task<string?> SaveImage(IFormFile file, IWebHostEnvironment env)
+    private static async Task<string?> SaveImage(IFormFile file, IWebHostEnvironment env, IConfiguration config)
     {
         if (file.Length == 0 || file.Length > MaxImageBytes)
             return null;
@@ -152,8 +153,7 @@ public static class ProductEndpoints
         if (!AllowedExtensions.Contains(extension))
             return null;
 
-        var webRoot = env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot");
-        var folder = Path.Combine(webRoot, "images", "products");
+        var folder = ImageStorage.ResolveProductsDirectory(config, env);
         Directory.CreateDirectory(folder);
 
         var fileName = $"{Guid.NewGuid():N}{extension}";
@@ -163,7 +163,7 @@ public static class ProductEndpoints
         return $"images/products/{fileName}";
     }
 
-    private static void DeleteImage(string? picUrl, IWebHostEnvironment env)
+    private static void DeleteImage(string? picUrl, IWebHostEnvironment env, IConfiguration config)
     {
         if (string.IsNullOrWhiteSpace(picUrl))
             return;
@@ -171,8 +171,12 @@ public static class ProductEndpoints
         if (!picUrl.StartsWith("images/products/", StringComparison.OrdinalIgnoreCase))
             return;
 
-        var webRoot = env.WebRootPath ?? Path.Combine(env.ContentRootPath, "wwwroot");
-        var path = Path.Combine(webRoot, picUrl.Replace('/', Path.DirectorySeparatorChar));
+        var folder = ImageStorage.ResolveProductsDirectory(config, env);
+        var fileName = Path.GetFileName(picUrl);
+        if (string.IsNullOrWhiteSpace(fileName))
+            return;
+
+        var path = Path.Combine(folder, fileName);
         if (File.Exists(path))
             File.Delete(path);
     }

@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Violet.Api.Data;
 using Violet.Api.Endpoints;
@@ -47,6 +48,21 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<VioletDbContext>();
     await db.Database.MigrateAsync();
     await DbSeeder.SeedAsync(db, app.Environment);
+}
+
+var productsDirectory = ImageStorage.ResolveProductsDirectory(app.Configuration, app.Environment);
+ImageStorage.EnsureSeededImages(app.Environment, productsDirectory);
+
+if (!string.Equals(
+        Path.GetFullPath(productsDirectory),
+        Path.GetFullPath(ImageStorage.DefaultDirectory(app.Environment)),
+        StringComparison.Ordinal))
+{
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(productsDirectory),
+        RequestPath = "/images/products"
+    });
 }
 
 app.UseDefaultFiles();

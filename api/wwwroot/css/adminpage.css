@@ -4,8 +4,28 @@
     transition-duration: 0.5s;
 }
 
+@keyframes zoomIn {
+    0% { scale: 0; }
+    100% { scale: 1; }
+}
+@keyframes enterFromRight {
+    from { translate: 120% 0px; }
+    to { translate: 0px 0px; }
+}
+
+main{
+    height: var(--height);
+    background-color: var(--bg-primary);
+    position: relative;
+}
 
 main .backgroundImage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--height);
+    z-index: 0;
     background-image: url("../pictures/admin.jpg");
     background-size: cover;
     background-position: 0px -50px;
@@ -227,8 +247,53 @@ main .backgroundImage{
 opacity: 0.5; 
 }
 .products{
+    position: relative;
+    z-index: 1;
+    height: var(--height);
+    overflow-y: auto;
+    direction: rtl;
     padding: 50px 0px 10px 0px;
 
+}
+.products::-webkit-scrollbar{
+    display: none;
+}
+.products nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+.products nav span{
+    width: 40px;
+    height: 40px;
+    border: 1px var(--border-color) solid;
+    border-radius: 50%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    cursor: pointer;
+}
+.products nav span:hover{
+    border-color: rgba(0, 0, 255, 0.6);
+}
+.navItemActive{
+    background-repeat: no-repeat;
+    background-image: linear-gradient(black 50%, #ccc);
+    border-color: black !important;
+    color: white;
+}
+body.dark-mode .products nav span{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+body.dark-mode .navItemActive{
+    background-image: linear-gradient(white 50%, #333);
+    border-color: #333 !important;
+    color: black;
 }
 .popupMessage{
    background-color: darkgreen;

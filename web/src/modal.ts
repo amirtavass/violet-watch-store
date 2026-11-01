@@ -9,6 +9,7 @@ export type ModalName =
   | "pictureBox";
 
 let onClose: (() => void) | null = null;
+let hideTimer: number | undefined;
 
 function container(): HTMLElement | null {
   return document.querySelector<HTMLElement>(".modal .container");
@@ -20,18 +21,34 @@ export function showModal(name: ModalName): void {
   const cont = container();
   if (!modal || !cont) return;
 
+  if (hideTimer !== undefined) {
+    window.clearTimeout(hideTimer);
+    hideTimer = undefined;
+  }
+
   cont.querySelectorAll<HTMLElement>(":scope > div").forEach((el) => {
     el.style.display = "none";
   });
 
   const page = cont.querySelector<HTMLElement>(`.${name}`);
-  if (page) page.style.display = "block";
+  if (page) {
+    page.style.display =
+      name === "aboutUs" || name === "contactUs" ? "flex" : "block";
+  }
+
+  modal.style.opacity = "1";
   modal.style.display = "flex";
 }
 
 export function closeModal(): void {
   const modal = document.querySelector<HTMLElement>(".modal");
-  if (modal) modal.style.display = "none";
+  if (modal) {
+    modal.style.opacity = "0";
+    if (hideTimer !== undefined) window.clearTimeout(hideTimer);
+    hideTimer = window.setTimeout(() => {
+      modal.style.display = "none";
+    }, 500);
+  }
   onClose?.();
   onClose = null;
 }
