@@ -80,6 +80,47 @@ php_errors.log
 api/bin/
 api/obj/
 api/appsettings.Development.json
+api/seed/products.json
+
+# Seeded product images (binary uploads stay out of git)
 api/wwwroot/images/products/*
 !api/wwwroot/images/products/.gitkeep
-api/seed/products.json
+
+# Generated build output
+publish/
+api/wwwroot/assets/
+api/wwwroot/css/
+api/wwwroot/fonts/
+api/wwwroot/pictures/
+api/wwwroot/index.html
+api/wwwroot/admin.html
+api/wwwroot/*.br
+api/wwwroot/*.gz
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+.htpasswd
+
+# SSH and private key material
+.ssh/
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Local environment overrides
+.env.*
+!.env.example
+!.env.*.example
+
+# SQL dumps and data exports (can contain sensitive production data)
+*.sql
+*.sql.gz
+!schema.sql
+!migrations/*.sql
+
